@@ -1,4 +1,6 @@
 import checkNumInputs from './checkNumImputs';
+import closeAllModals from './closeAllModals';
+import clearState from './cleareState';
 
 const forms = (state) => {
     const form = document.querySelectorAll('form');
@@ -27,6 +29,7 @@ const forms = (state) => {
     }
 
     form.forEach( item => {
+
         item.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -51,9 +54,13 @@ const forms = (state) => {
                 })
                 .finally(() => {
                     clearInputs();
+                    clearState(state);
                     setTimeout(() => {
                         statusMessage.remove()
                     }, 5000)
+                    setTimeout(() => {
+                        closeAllModals();
+                    }, 6000)
                 })
         })
     } )

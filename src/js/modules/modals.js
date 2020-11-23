@@ -1,23 +1,22 @@
+import closeAllModals from './closeAllModals';
+
 const modals = () => {
     function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
         const trigger = document.querySelectorAll(triggerSelector)
         const modal = document.querySelector(modalSelector)
         const close = document.querySelector(closeSelector)
-        const windows = document.querySelectorAll('[data-modal]')
 
         trigger.forEach(item => {
             item.addEventListener('click', (e) => {
                 if (e.target) e.preventDefault();
-
-                windows.forEach(item => item.style.display = 'none')
-
+                closeAllModals();
                 modal.style.display = 'block';
                 document.body.classList.add('modal-open');
             })
         })
 
         const closeFoo = (modal) => {
-            windows.forEach(item => item.style.display = 'none')
+            closeAllModals();
             modal.style.display = 'none';
             document.body.classList.remove('modal-open');
         }
